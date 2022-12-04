@@ -15,7 +15,17 @@
         <slf4j.version>2.0.5</slf4j.version>
     </properties>
 
-    <!-- @TODO criar o dependencyManagement aqui -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>bom</artifactId>
+                <version>2.18.16</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -28,9 +38,10 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-
-        <!-- @TODO adicionar a dependência do KMS aqui -->
-
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>kms</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
