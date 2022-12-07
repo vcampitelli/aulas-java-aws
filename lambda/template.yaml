@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Template SAM para a função de redimensionamento ResizeImageFunction
+Resources:
+  resizeImageJavaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: resizeImageJavaFunction
+      Handler: com.viniciuscampitelli.Handler::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 1024
+      Timeout: 30
+      Events:
+        s3Notification:
+          Type: S3
+          Properties:
+            Bucket: grupo1
+            Events: s3:ObjectCreated:*
+            Filter:
+              S3Key:
+                Rules:
+                - Name: prefix
+                  Value: imagens/
